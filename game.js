@@ -44,6 +44,7 @@ function Unit(unittype, owner) {
     this.owner = owner;
 }
 
+var view;
 game_state = {
     "general" : {
         "round_number" : 0,
@@ -95,6 +96,7 @@ function init() {
     p1 = new Player();
     p2 = new Player();
     game_state.players = [p1, p2];
+    view = new GameView();
 
     // Create map
     $.each(map_initialization.nodes, function(index, value) {
@@ -116,6 +118,7 @@ function init() {
     
     
     // Initialize turn state and actions
+    var loop = setTimeout(draw, 333);
 }
 
 function update() {
@@ -123,7 +126,8 @@ function update() {
 }
 
 function draw() {
-    ;
+  view.drawMap(game_state.map);
+  view.drawUI(game_state.players);
 }
 
 function create_map(map_init) {

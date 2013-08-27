@@ -208,6 +208,11 @@
         "abilities": ["attack_-1"]
       },
       {
+        "from": "j",
+        "to": "n",
+        "abilities": []
+      },
+      {
         "from": "k",
         "to": "l",
         "abilities": []
