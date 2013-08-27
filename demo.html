@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.6.0.min.js"></script>
+    <script defer="defer">
+
+var nodes = {
+node1 : {
+// x,y in game units
+position: {x: 100, y: 100},
+fill: 'red',
+abilitites: [],
+},
+node2 : {
+// x,y in game units
+position: {x: 300, y: 100 },
+fill: 'green',
+abilitites: [],
+},
+node3 : {
+  position: { x: 200, y: 300 },
+  fill: 'yellow',
+  abilities: [],
+},
+};
+var edges = {
+edge1 : {
+from: nodes.node1,
+to: nodes.node2,
+abilities: []
+},
+edge2 : {
+  from: nodes.node2,
+  to: nodes.node3,
+  abilities: []
+}
+};
+      
+      var stage = new Kinetic.Stage({
+        container: 'container',
+        width: 800,
+        height: 600
+      });
+
+      var layer = new Kinetic.Layer();
+
+      function makeCircle(x, y, radius, fill) {
+        return new Kinetic.Circle({
+          x: x,
+          y: y,
+          radius: radius,
+          fill: fill,
+          stroke: 'black',
+          strokeWidth: 4
+        });
+      }
+
+      function lineThroughPoints(arr) {
+        return new Kinetic.Line({
+          points: arr,
+          stroke: 'black',
+          strokeWidth: 15,
+          lineCap: 'round',
+          lineJoin: 'round'
+        });
+      }
+
+      function lineThroughShapes() {
+        var arr = Array.prototype.slice.call(arguments, 0);
+        return lineThroughPoints(arr.map(function(shape) {
+          return shape.getAbsolutePosition();
+        }));
+      }
+      function lineThroughNodes() {
+        var arr = Array.prototype.slice.call(arguments, 0);
+        return lineThroughPoints(arr.map(function(node) {
+          return node.position;
+        }));
+      }
+           // add the shape to the layer
+           // add the shape to the layer
+      for (var edgeId in edges) {
+        var edge = edges[edgeId];
+        layer.add(lineThroughNodes(edge.from, edge.to));
+      }
+      for (var nodeId in nodes) {
+        var node = nodes[nodeId];
+        layer.add(makeCircle(node.position.x, node.position.y, 50, node.fill));
+      }
+
+      // add the layer to the stage
+      stage.add(layer);
+    </script>
+  </body>
+</html>
+
