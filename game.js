@@ -1,34 +1,13 @@
 ACTIONS_PER_TURN = 3;
 NUMBER_OF_PLAYERS = 2;
 
-nodes = null;
-edges = null;
-players = null;
-
 // TODO: Design, possibly split out a file for different things...
 //  - Game State
 //  - Map State
 //  - Unit Types and their properties
 //  - Node/Edge types and their possible abilities
 
-map_initialization = {
-    "nodes" : {
-        // TODO: Draw game board that we designed
-        'a': {
-            "location" : [0,0],
-            "abilities": null,
-        },
-        'b' : {
-            "location" : [0,0],
-            "abilities": null,
-        },
-    },
-    "edges" : [{
-        "from": 0,
-        "to": 0,
-        "abilities": ["attack_advantage"]
-    }]
-};
+map_initialization = null;
 
 function Node(position, abilities){
    this.position = position,
@@ -67,17 +46,11 @@ game_state = {
         "whose_turn" : 0,
         "actions_remaining" : 2,
     },
-    "players" : {
-        "player1" : {
-            "money" : 3,
-            "victory_points" : 5,
-        },
-        "player2" : {
-            "money" : 3,
-            "victory_points" : 5,
-        },
+    "players" : [],
+    "map" : {
+        "nodes" : {},
+        "edges" : {},
     },
-
     "map_state" : {
         "node_id" : {
             "units" : {
@@ -98,7 +71,22 @@ game_state = {
     // }
 };
 
+function getRemote(remote_url) {
+    return $.ajax({
+        type: "GET",
+        url: remote_url,
+        async: false,
+        dataType: "json",
+    }).responseText;
+};
+
+function preload() {
+    map_initialization = JSON.parse(getRemote("data/gamemap-original.json")).map;
+}
+
 function init() {
+    preload();
+
     // Add players
     p1 = new Player();
     p2 = new Player();
@@ -106,12 +94,18 @@ function init() {
 
     // Create map
     $.each(map_initialization.nodes, function(index, value) {
+      var node = new Node(value.position, value.abilities);
+      game_state.map.nodes[index] = node;
       console.log(index, value);
     });
+    console.log(game_state.map);
 
     $.each(map_initialization.edges, function(index, value) {
+      var edge = new Edge(value.from, value.to, value.abilities);
+      game_state.map.edges[index] = edge;
       console.log(index, value);
     });
+    console.log(game_state.map);
 
     // Add initial units
     
