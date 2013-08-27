@@ -12,24 +12,40 @@
     <div id="container"></div>
     <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.6.0.min.js"></script>
     <script defer="defer">
-
+      var abilities = {
+        corn : {
+          fill: 'yellow'
+        },
+        light : {
+          fill: 'green'
+        },
+        heavy : {
+          fill: 'red'
+        },
+        cavalry : {
+          fill: 'orange'
+        },
+        crystal : {
+          fill: 'blue'
+        },
+      };
 var nodes = {
 node1 : {
 // x,y in game units
 position: {x: 100, y: 100},
 fill: 'red',
-abilitites: [],
+abilities: [abilities.corn],
 },
 node2 : {
 // x,y in game units
 position: {x: 300, y: 100 },
 fill: 'green',
-abilitites: [],
+abilities: [abilities.heavy, abilities.cavalry],
 },
 node3 : {
   position: { x: 200, y: 300 },
   fill: 'yellow',
-  abilities: [],
+  abilities: [abilities.crystal, abilities.crystal, abilities.light],
 },
 };
 var edges = {
@@ -68,7 +84,7 @@ edge2 : {
         return new Kinetic.Line({
           points: arr,
           stroke: 'black',
-          strokeWidth: 15,
+          strokeWidth: 3,
           lineCap: 'round',
           lineJoin: 'round'
         });
@@ -86,6 +102,25 @@ edge2 : {
           return node.position;
         }));
       }
+
+      function drawNode(node) {
+        layer.add(makeCircle(node.position.x, node.position.y, 20, node.fill));
+        var offset = 0;
+        for (var i = 0; i < node.abilities.length; i++) {
+          var ability = node.abilities[i];
+          var square = new Kinetic.Rect({
+            x: node.position.x + 10,
+            y: node.position.y - 20 + offset,
+            width: 10,
+            height: 10,
+            fill: ability.fill,
+            stroke: 'black',
+            strokeWidth: 1
+          });
+          offset += 11;
+          layer.add(square);
+        }
+      }
            // add the shape to the layer
            // add the shape to the layer
       for (var edgeId in edges) {
@@ -94,7 +129,7 @@ edge2 : {
       }
       for (var nodeId in nodes) {
         var node = nodes[nodeId];
-        layer.add(makeCircle(node.position.x, node.position.y, 50, node.fill));
+        drawNode(node);
       }
 
       // add the layer to the stage
