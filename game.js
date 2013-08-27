@@ -33,9 +33,13 @@ function Edge(from, to, abilities){
    this.abilities = abilities;
 }
 
+var player_id_ctr = 0;
 function Player(){
+   var colors = ['red', 'green'];
+   this.id = ++player_id_ctr;
    this.money = 0;
    this.victory_points = 0;
+   this.color = colors[this.id - 1];
 }
 
 Player.prototype.add_victory_points = function(quantity){
