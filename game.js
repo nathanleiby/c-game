@@ -5,29 +5,38 @@ nodes = null;
 edges = null;
 players = null;
 
+// TODO: Design, possibly split out a file for different things...
+//  - Game State
+//  - Map State
+//  - Unit Types and their properties
+//  - Node/Edge types and their possible abilities
+
 map_initialization = {
     "nodes" : {
-        "node_id" : {
-            // x,y in game units
+        // TODO: Draw game board that we designed
+        'a': {
             "location" : [0,0],
             "abilities": null,
-        }, 
+        },
+        'b' : {
+            "location" : [0,0],
+            "abilities": null,
+        },
     },
-    "edges" : {
-        "edge_id" : {
-            // "from": node1,
-            // "to": node2,
-            "abilities": ["attack_advantage"]
-        }
-    }
+    "edges" : [{
+        "from": 0,
+        "to": 0,
+        "abilities": ["attack_advantage"]
+    }]
 };
 
-function Node(location, abilities){
-   this.location = location,
+function Node(position, abilities){
+   this.position = position,
    this.abilities = abilities;
 }
 
 function Edge(from, to, abilities){
+   console.log("type",from.type);
    this.from = from;
    this.to = to;
    this.abilities = abilities;
@@ -96,7 +105,14 @@ function init() {
     game_state.players = [p1, p2];
 
     // Create map
-    
+    $.each(map_initialization.nodes, function(index, value) {
+      console.log(index, value);
+    });
+
+    $.each(map_initialization.edges, function(index, value) {
+      console.log(index, value);
+    });
+
     // Add initial units
     
     
