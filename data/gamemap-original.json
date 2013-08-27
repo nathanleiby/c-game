@@ -1,0 +1,252 @@
+{
+  "map": {
+    "nodes": {
+      "a": {
+        "position": [
+          5,
+          1
+        ],
+        "abilities": []
+      },
+      "b": {
+        "position": [
+          7,
+          1
+        ],
+        "abilities": []
+      },
+      "c": {
+        "position": [
+          9,
+          1
+        ],
+        "abilities": []
+      },
+      "d": {
+        "position": [
+          3,
+          3
+        ],
+        "abilities": []
+      },
+      "e": {
+        "position": [
+          6,
+          3
+        ],
+        "abilities": []
+      },
+      "f": {
+        "position": [
+          8,
+          3
+        ],
+        "abilities": []
+      },
+      "g": {
+        "position": [
+          10,
+          3
+        ],
+        "abilities": []
+      },
+      "h": {
+        "position": [
+          1,
+          4
+        ],
+        "abilities": []
+      },
+      "i": {
+        "position": [
+          7,
+          4
+        ],
+        "abilities": []
+      },
+      "j": {
+        "position": [
+          12,
+          4
+        ],
+        "abilities": []
+      },
+      "k": {
+        "position": [
+          3,
+          5
+        ],
+        "abilities": []
+      },
+      "l": {
+        "position": [
+          6,
+          5
+        ],
+        "abilities": []
+      },
+      "m": {
+        "position": [
+          8,
+          5
+        ],
+        "abilities": []
+      },
+      "n": {
+        "position": [
+          10,
+          5
+        ],
+        "abilities": []
+      },
+      "o": {
+        "position": [
+          5,
+          8
+        ],
+        "abilities": []
+      },
+      "p": {
+        "position": [
+          7,
+          8
+        ],
+        "abilities": []
+      },
+      "q": {
+        "position": [
+          9,
+          8
+        ],
+        "abilities": []
+      }
+    },
+    "edges": [
+      {
+        "from": "a",
+        "to": "d",
+        "abilities": []
+      },
+      {
+        "from": "a",
+        "to": "e",
+        "abilities": []
+      },
+      {
+        "from": "b",
+        "to": "e",
+        "abilities": []
+      },
+      {
+        "from": "b",
+        "to": "f",
+        "abilities": []
+      },
+      {
+        "from": "c",
+        "to": "f",
+        "abilities": []
+      },
+      {
+        "from": "c",
+        "to": "g",
+        "abilities": []
+      },
+      {
+        "from": "d",
+        "to": "h",
+        "abilities": []
+      },
+      {
+        "from": "d",
+        "to": "e",
+        "abilities": []
+      },
+      {
+        "from": "e",
+        "to": "k",
+        "abilities": []
+      },
+      {
+        "from": "e",
+        "to": "i",
+        "abilities": []
+      },
+      {
+        "from": "f",
+        "to": "i",
+        "abilities": ["attack_+1"]
+      },
+      {
+        "from": "f",
+        "to": "g",
+        "abilities": []
+      },
+      {
+        "from": "g",
+        "to": "j",
+        "abilities": []
+      },
+      {
+        "from": "g",
+        "to": "m",
+        "abilities": []
+      },
+      {
+        "from": "h",
+        "to": "k",
+        "abilities": []
+      },
+      {
+        "from": "i",
+        "to": "m",
+        "abilities": []
+      },
+      {
+        "from": "i",
+        "to": "l",
+        "abilities": ["attack_-1"]
+      },
+      {
+        "from": "k",
+        "to": "l",
+        "abilities": []
+      },
+      {
+        "from": "k",
+        "to": "o",
+        "abilities": []
+      },
+      {
+        "from": "l",
+        "to": "o",
+        "abilities": []
+      },
+      {
+        "from": "l",
+        "to": "p",
+        "abilities": []
+      },
+      {
+        "from": "m",
+        "to": "n",
+        "abilities": []
+      },
+      {
+        "from": "m",
+        "to": "p",
+        "abilities": []
+      },
+      {
+        "from": "m",
+        "to": "q",
+        "abilities": []
+      },
+      {
+        "from": "n",
+        "to": "q",
+        "abilities": []
+      }
+    ]
+  }
+}
